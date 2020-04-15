@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>All Lifts</title>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    </head>
+    <body>
+    <div class="container">
+        <div class="col-md-4">
+            <h1>All lifts</h1>
+            <a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
+            class="btn btn-success">Profile: [[${#httpServletRequest.remoteUser}]]</a>
+        </div>
+
+         <table class="table table-striped">
+            <tr>
+                <th>Lift Type</th>
+                <th>Variation and notes</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Weight</th>
+                <th>User</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+            </tr>
+            <tr th:each = "lift : ${lifts}">
+                <td th:text="${lift.liftType}"></td>
+                <td th:text="${lift.notes}"></td>
+                <td th:text="${lift.sets}"></td>
+                <td th:text="${lift.reps}"></td>
+                <td th:text="${lift.weight}"></td>
+                <td th:text="${lift.workout.getUser().getUsername()}"></td>
+                
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editlift/{id}(id=${lift.id})}" class="btn btn-success">Edit</a></td>
+                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletelift/{id}(id=${lift.id})}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+
+        <div style="clear: both; display: block; height: 30px;"></div>
+
+        <div class="col-md-4">
+            <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-link"/>
+        </form>
+        </div>
+    </div>
+
+
+    </body>
+</html>

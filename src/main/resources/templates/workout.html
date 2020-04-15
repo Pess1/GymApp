@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Lifter Profile</title>
+        <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    </head>
+    <body>
+    <div class="container">
+        <div class="col-md-4">
+            <h1>Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+        </div>
+			<table class="table table-striped">
+			   <tr>
+			   		<th>Lift Type</th>
+			   		<th>Variation and notes</th>
+			   		<th>Sets</th>
+			   		<th>Reps</th>
+			   		<th>Weight</th>
+			   		<th>Edit</th>
+			   </tr>
+			   		<tr th:each = "lift : ${workout.lifts}">
+			   		<td th:text="${lift.liftType}"></td>
+			   		<td th:text="${lift.notes}"></td>
+			   		<td th:text="${lift.sets}"></td>
+			   		<td th:text="${lift.reps}"></td>
+			   		<td th:text="${lift.weight}"></td>
+			   		<td><a th:href="@{../editlift/{id}(id=${lift.id})}" class="btn btn-success">Edit</a></td>
+			   		<td sec:authorize="hasAuthority('ADMIN')">
+			   			<a th:href="@{../deletelift/{id}/{workoutId}(id=${lift.id},workoutId=${lift.getWorkout().getId()})}" class="btn btn-danger">Delete</a>
+			   		</td>
+			   </tr>
+			</table>
+        <a th:href="@{../addlift/{id}(id=${workout.getId()})}" class="btn btn-success">Add Lift</a>
+
+        <div style="clear: both; display: block; height: 30px;"></div>
+
+        <div class="col-md-4">
+            <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-link"/>
+        </form>
+        </div>
+    </div>
+
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Lifter Profile</title>
+        <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+    </head>
+    <body>
+    <div class="container">
+        <div class="col-md-4">
+            <h1>Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+        </div>
+		<table class="table table-stripped">
+			<tr>
+				<th>Workout Date</th>
+				<th>Workout Lifts</th>
+			</tr>
+			<tr th:each = "workout : ${workouts}">
+				<td th:text="${workout.date}"></td>
+				<td><a th:href="@{/workout/{id}(id=${workout.id})}">Show/Add/Edit Lifts</a></td>
+			</tr>
+		</table>
+
+        <div style="clear: both; display: block; height: 30px;"></div>
+        
+        <a href="/addWorkout" class="btn btn-success">Add Workout</a>
+
+        <div class="col-md-4">
+            <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-link"/>
+        </form>
+        </div>
+    </div>
+
+    </body>
+</html>
