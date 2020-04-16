@@ -3,14 +3,17 @@ package com.haagahelia.GymApp.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.haagahelia.GymApp.domain.EditUserForm;
 import com.haagahelia.GymApp.domain.SignupForm;
 import com.haagahelia.GymApp.domain.User;
 import com.haagahelia.GymApp.domain.UserRepository;
@@ -24,6 +27,22 @@ public class UserController {
 	public String signup(Model model) {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
+	}
+	
+	@RequestMapping(value = "/edituser/{username}")
+	public String editUser(@PathVariable("username") String username, Model model) {
+		User user = userRepo.findUserByUsername(username);
+		EditUserForm editUserForm = new EditUserForm();
+		
+		editUserForm.setEmail(user.getEmail());
+		editUserForm.setUsername(user.getUsername());
+		editUserForm.setHeight(user.getHeight());
+		editUserForm.setWeight(user.getWeight());
+		editUserForm.setRole(user.getRole());
+		
+		model.addAttribute("edituserform", editUserForm);
+		
+		return "edituser";
 	}
 	
 	
@@ -60,6 +79,44 @@ public class UserController {
 		}
 		
 		return "redirect:/login";
+	}
+	
+	@RequestMapping(value = "/saveuseredit/{username}", method = RequestMethod.POST)
+	public String saveEditedUser(@Valid @PathVariable("username") String username, 
+			@ModelAttribute("edituserform") EditUserForm editUserForm, BindingResult bindingResult) {
+		
+		if (!bindingResult.hasErrors()) {
+			User user = userRepo.findUserByUsername(username);
+			
+			String password = editUserForm.getPassword();
+			BCryptPasswordEncoder bcEncoder = new BCryptPasswordEncoder();
+			
+			boolean passwordValid = BCrypt.checkpw(password, user.getPasswordHash());
+			
+			System.out.println(passwordValid);
+			
+			if(passwordValid == true) {
+				String newPassword = editUserForm.getNewPassword();
+				String newHashedPass = bcEncoder.encode(newPassword);
+				
+				user.setEmail(editUserForm.getEmail());
+				user.setHeight(editUserForm.getHeight());
+				user.setWeight(editUserForm.getWeight());
+				user.setRole(editUserForm.getRole());
+				
+				if (newPassword.isEmpty() || newPassword.isBlank()) {
+					userRepo.save(user);
+				} else {
+					user.setPasswordHash(newHashedPass);
+					userRepo.save(user);
+				}
+			} else {
+				bindingResult.rejectValue("password", "err.password", "Password does not match");
+				return "redirect:../edituser/" + user.getUsername();
+			}
+
+		}
+		return ("redirect:../profile/" + username);
 	}
 	
 }

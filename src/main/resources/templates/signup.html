@@ -3,7 +3,7 @@
 <head>
     <title>Signup</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
 	<h1>Signup</h1>
@@ -14,7 +14,7 @@
 				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
 			</div>
 			<div>
-				<label for="password">Password: <input type="text" id="password" th:field="*{password}" class="form-control"/></label>
+				<label for="password">Password: <input type="password" id="password" th:field="*{password}" class="form-control"/></label>
 				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
 			</div>
 			<div>

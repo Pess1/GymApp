@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Edit User</h1>
+	<div class="col-md-4">
+		<form th:object="${edituserform}" th:action="@{/saveuseredit/{username}(username=${edituserform.username})}" action="#" method="post">
+			<div>
+				<h3 th:text="${edituserform.username}"></h3>
+			</div>
+			
+			<div>
+				<label for="email">Email: 
+					<input type="text" id="email" th:field="*{email}" class="form-control" value="${edituserform.email}"/>
+				</label>
+			</div>
+			<div>
+				<label for="weight">Weight (Kilograms): 
+					<input type="text" id="weight" th:field="*{weight}" class="form-control" value="${edituserform.weight}"/>
+				</label>
+			</div>
+			<div>
+				<label for="height">Height (Centimeters): 
+					<input type="text" id="height" th:field="*{height}" class="form-control" value="${edituserform.height}"/>
+				</label>
+			</div>
+			<div>
+				<label for="newPassword">Change password (leave empty if you want to keep your old one): 
+					<input type="password" id="newPassword" th:field="*{newPassword}" class="form-control"/>
+				</label>
+				<p th:if="${#fields.hasErrors('newPassword')}" th:errors="*{newPassword}">Password error</p>
+			</div>
+			<div>
+				<label for="password">Your current password: 
+					<input type="password" id="password" th:field="*{password}" class="form-control"/>
+				</label>
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
+			</div>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input type="submit" value="Save edit" class="btn btn-primary"></input>
+		</form>
+	</div>
+</body>
+</html>

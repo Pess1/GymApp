@@ -7,6 +7,9 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class SignupForm {
+	
+	private long id;
+	
 	@NotEmpty
 	@Size(min=4, max=20)
 	private String username = "";
@@ -18,7 +21,6 @@ public class SignupForm {
 	@NotEmpty
 	private String role = "USER";
 	
-	//@Pattern(regexp = "^[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$")
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
 	private String email = "";
 	
@@ -76,6 +78,14 @@ public class SignupForm {
 
 	public void setWeight(int weight) {
 		this.weight = weight;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 }

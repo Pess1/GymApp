@@ -41,6 +41,7 @@ public class GymAppController {
 	public String profileData(@PathVariable("username") String username, Model model) {
 		User user = userRepo.findUserByUsername(username);
 		model.addAttribute("workouts", workoutRepo.findWorkoutsByUser(user));
+		model.addAttribute("user", user);
 		System.out.println(username);
 		return "profile";
 	}

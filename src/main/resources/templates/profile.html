@@ -4,12 +4,29 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Lifter Profile</title>
-        <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+        <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     </head>
     <body>
     <div class="container">
         <div class="col-md-4">
             <h1>Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+            <a th:href="@{/alllifts}" 
+            class="btn btn-success">Back to Front Page</a>
+        </div>
+        
+        <div class="col-md-4">
+        	<h2>[[${#httpServletRequest.remoteUser}]] stats</h2>
+        	<table class="table table-stripped">
+        		<tr>
+        			<th>Weight</th>
+        			<th>Height</th>
+        		</tr>
+        		<tr>
+        			<td th:text="${user.weight}+kg"></td>
+        			<td th:text="${user.height}+cm"></td>
+        			<td><a th:href="@{/edituser/{username}(username=${user.username})}" class="btn btn-primary">Edit user</a></td>
+        		</tr>
+        	</table>
         </div>
 		<table class="table table-stripped">
 			<tr>

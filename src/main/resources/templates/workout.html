@@ -4,12 +4,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Lifter Profile</title>
-        <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+        <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     </head>
     <body>
     <div class="container">
         <div class="col-md-4">
             <h1>Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+            <a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
+            class="btn btn-success">Back to profile</a>
         </div>
 			<table class="table table-striped">
 			   <tr>
