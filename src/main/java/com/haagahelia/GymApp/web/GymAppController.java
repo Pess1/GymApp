@@ -47,9 +47,15 @@ public class GymAppController {
 	}
 	
 	@RequestMapping(value = "/alllifts", method = RequestMethod.GET)
-	public String profileData(Model model) {
+	public String allLifts(Model model) {
 		model.addAttribute("lifts", liftRepo.findAll());
 		return "alllifts";
+	}
+	
+	@RequestMapping(value = "/allusers", method = RequestMethod.GET)
+	public String allUsers(Model model) {
+		model.addAttribute("users", userRepo.findAll());
+		return "allusers";
 	}
 	
 	@RequestMapping(value = "/addlift/{id}", method = RequestMethod.GET)
@@ -106,6 +112,16 @@ public class GymAppController {
 	public String deleteLift(@PathVariable("id") Long id, @PathVariable("workoutId") Long workoutId, Model model) {
 		liftRepo.deleteById(id);
 		return "redirect:../../workout/" + workoutId;
+	}
+	
+	@RequestMapping(value = "deleteworkout/{id}", method = RequestMethod.GET)
+	public String deleteWorkout(@PathVariable("id") Long id) {
+		Workout workout = workoutRepo.findWorkoutById(id);
+		String username = workout.getUser().getUsername();
+		
+		workoutRepo.deleteById(id);
+		
+		return "redirect:../profile/" + username;
 	}
 
 }

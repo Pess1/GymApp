@@ -44,6 +44,7 @@
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 			<input type="submit" value="Save edit" class="btn btn-primary"></input>
+			<a th:href="@{/profile/{username}(username=${edituserform.username})}" class="btn btn-danger">Cancel</a>
 		</form>
 	</div>
 </body>

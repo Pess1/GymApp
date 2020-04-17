@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit User Role</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="col-md-4">
+		<h3>Edit User Role</h3>
+		<a th:href="@{/allusers}" class="btn btn-primary">All Users</a>
+	</div>
+	<div class="col-md-4">
+		<form th:object="${edituserform}" th:action="@{/saveroleedit/{id}(id=${edituserform.getId()})}" action="#" method="post">
+			<div>
+				<h3 th:text="'Profile: '+${edituserform.username}"></h3>
+			</div>
+			<div>
+				<label for="role">Change Role: 
+					<select th:field="*{role}">
+						<option th:value="'USER'" th:text="USER"></option>
+						<option th:value="'ADMIN'" th:text="ADMIN"></option>
+					</select>
+				</label>
+			</div>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input type="submit" value="Save edit" class="btn btn-primary"></input>
+		</form>
+	</div>
+</body>
+</html>

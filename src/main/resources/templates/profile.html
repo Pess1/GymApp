@@ -8,46 +8,54 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     </head>
     <body>
     <div class="container">
-        <div class="col-md-4">
-            <h1>Profile: [[${#httpServletRequest.remoteUser}]]</h1>
-            <a th:href="@{/alllifts}" 
-            class="btn btn-success">Back to Front Page</a>
-        </div>
+    
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    		<h1 class="navbar-brand">Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+    		<div class="navbar-nav">
+    			<a th:href="@{/edituser/{username}(username=${user.username})}" class="nav-item nav-link">Edit user</a>
+    			<a th:href="@{/alllifts}" 
+            		class="nav-item nav-link">Back to Front Page</a>
+            	<form th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
+        		</form>
+    		</div>	
+    	</nav>
         
-        <div class="col-md-4">
-        	<h2>[[${#httpServletRequest.remoteUser}]] stats</h2>
-        	<table class="table table-stripped">
-        		<tr>
-        			<th>Weight</th>
-        			<th>Height</th>
-        		</tr>
-        		<tr>
-        			<td th:text="${user.weight}+kg"></td>
-        			<td th:text="${user.height}+cm"></td>
-        			<td><a th:href="@{/edituser/{username}(username=${user.username})}" class="btn btn-primary">Edit user</a></td>
-        		</tr>
-        	</table>
-        </div>
-		<table class="table table-stripped">
-			<tr>
-				<th>Workout Date</th>
-				<th>Workout Lifts</th>
-			</tr>
-			<tr th:each = "workout : ${workouts}">
-				<td th:text="${workout.date}"></td>
-				<td><a th:href="@{/workout/{id}(id=${workout.id})}">Show/Add/Edit Lifts</a></td>
-			</tr>
-		</table>
+        <div class="row mx-md-n5">
+        	<div class="col px-md-5">
+        		<h3>[[${#httpServletRequest.remoteUser}]] stats</h3>
+        		<table class="table table-stripped">
+        			<tr>
+        				<th>Weight</th>
+        				<th>Height</th>
+        			</tr>
+        			<tr>
+        				<td th:text="${user.weight}+kg"></td>
+        				<td th:text="${user.height}+cm"></td>
+        			</tr>
+        		</table>
+        	</div>
+        	
+        	<div class="col px-md-5">
+        		<h3>Workouts</h3>
+        		<table class="table table-stripped">
+					<tr>
+						<th>Workout Date</th>
+						<th>Workout Lifts</th>
+					</tr>
+					<tr th:each = "workout : ${workouts}">
+						<td th:text="${workout.date}"></td>
+						<td><a th:href="@{/workout/{id}(id=${workout.id})}">Show/Add/Edit Lifts</a></td>
+						<td><a th:href="@{/deleteworkout/{id}(id=${workout.id})}" class="btn btn-danger">Delete workout</a></td>
+					</tr>
+				</table>
+				<a href="/addWorkout" class="btn btn-success">Add Workout</a>
+        	</div>
 
+        </div>
+		
         <div style="clear: both; display: block; height: 30px;"></div>
         
-        <a href="/addWorkout" class="btn btn-success">Add Workout</a>
-
-        <div class="col-md-4">
-            <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out" class="btn btn-link"/>
-        </form>
-        </div>
     </div>
 
     </body>

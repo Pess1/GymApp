@@ -8,41 +8,44 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     </head>
     <body>
     <div class="container">
-        <div class="col-md-4">
-            <h1>Profile: [[${#httpServletRequest.remoteUser}]]</h1>
-            <a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
-            class="btn btn-success">Back to profile</a>
-        </div>
-			<table class="table table-striped">
-			   <tr>
-			   		<th>Lift Type</th>
-			   		<th>Variation and notes</th>
-			   		<th>Sets</th>
-			   		<th>Reps</th>
-			   		<th>Weight</th>
-			   		<th>Edit</th>
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    		<h1 class="navbar-brand">Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+    		<div class="navbar-nav">
+    			<a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
+            		class="nav-item nav-link">Back to profile</a>
+            	<form th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
+        		</form>
+    		</div>	
+    	</nav>
+    	
+		<table class="table table-striped">
+			  <tr>
+			   	<th>Lift Type</th>
+			   	<th>Variation and notes</th>
+			   	<th>Sets</th>
+			   	<th>Reps</th>
+			   	<th>Weight</th>
+			   	<th>Edit</th>
+			   	<th>Delete</th>
+			  </tr>
+			  <tr th:each = "lift : ${workout.lifts}">
+			   	<td th:text="${lift.liftType}"></td>
+			   	<td th:text="${lift.notes}"></td>
+			   	<td th:text="${lift.sets}"></td>
+			   	<td th:text="${lift.reps}"></td>
+			   	<td th:text="${lift.weight}"></td>
+			   	<td><a th:href="@{../editlift/{id}(id=${lift.id})}" class="btn btn-primary">Edit</a></td>
+			   	<td sec:authorize="hasAuthority('ADMIN')">
+			   		<a th:href="@{../deletelift/{id}/{workoutId}(id=${lift.id},workoutId=${lift.getWorkout().getId()})}" class="btn btn-danger">Delete</a>
+			   	</td>
 			   </tr>
-			   		<tr th:each = "lift : ${workout.lifts}">
-			   		<td th:text="${lift.liftType}"></td>
-			   		<td th:text="${lift.notes}"></td>
-			   		<td th:text="${lift.sets}"></td>
-			   		<td th:text="${lift.reps}"></td>
-			   		<td th:text="${lift.weight}"></td>
-			   		<td><a th:href="@{../editlift/{id}(id=${lift.id})}" class="btn btn-success">Edit</a></td>
-			   		<td sec:authorize="hasAuthority('ADMIN')">
-			   			<a th:href="@{../deletelift/{id}/{workoutId}(id=${lift.id},workoutId=${lift.getWorkout().getId()})}" class="btn btn-danger">Delete</a>
-			   		</td>
-			   </tr>
-			</table>
+		</table>
+		
         <a th:href="@{../addlift/{id}(id=${workout.getId()})}" class="btn btn-success">Add Lift</a>
 
         <div style="clear: both; display: block; height: 30px;"></div>
 
-        <div class="col-md-4">
-            <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out" class="btn btn-link"/>
-        </form>
-        </div>
     </div>
 
     </body>

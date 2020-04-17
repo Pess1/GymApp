@@ -45,6 +45,23 @@ public class UserController {
 		return "edituser";
 	}
 	
+	@RequestMapping(value = "/edituserrole/{id}")
+	public String editUserRole(@PathVariable("id") Long id, Model model) {
+		User user = userRepo.findUserByUserid(id);
+		EditUserForm editUserForm = new EditUserForm();
+		
+		editUserForm.setEmail(user.getEmail());
+		editUserForm.setUsername(user.getUsername());
+		editUserForm.setHeight(user.getHeight());
+		editUserForm.setWeight(user.getWeight());
+		editUserForm.setRole(user.getRole());
+		editUserForm.setId(user.getUserId());
+		
+		model.addAttribute("edituserform", editUserForm);
+		
+		return "edituserrole";
+	}
+	
 	
 	/**
 	*@param signupForm
@@ -117,6 +134,24 @@ public class UserController {
 
 		}
 		return ("redirect:../profile/" + username);
+	}
+	
+	@RequestMapping(value = "/saveroleedit/{id}", method = RequestMethod.POST)
+	public String saveRoleEdit(@PathVariable("id") Long id, @ModelAttribute("edituserform") EditUserForm editUserForm) {
+		User user = userRepo.findUserByUserid(id);
+		
+		user.setRole(editUserForm.getRole());
+		
+		userRepo.save(user);
+		
+		return "redirect:../allusers";
+	}
+	
+	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
+	public String deleteUser(@PathVariable("id") Long id) {
+		userRepo.deleteById(id);
+		
+		return "redirect:../allusers";
 	}
 	
 }

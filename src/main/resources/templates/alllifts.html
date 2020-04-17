@@ -8,11 +8,17 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     </head>
     <body>
     <div class="container">
-        <div class="col-md-4">
-            <h1>All lifts</h1>
-            <a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
-            class="btn btn-success">Profile: [[${#httpServletRequest.remoteUser}]]</a>
-        </div>
+    	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    		<h1 class="navbar-brand">All lifts</h1>
+    		<div class="navbar-nav">
+    			<a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
+            		class="nav-item nav-link">Profile: [[${#httpServletRequest.remoteUser}]]</a>
+        		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/allusers}" class="nav-item nav-link">All Users</a>
+        		<form th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
+        		</form>
+    		</div>	
+    	</nav>
 
          <table class="table table-striped">
             <tr>
@@ -40,11 +46,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
 
         <div style="clear: both; display: block; height: 30px;"></div>
 
-        <div class="col-md-4">
-            <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out" class="btn btn-link"/>
-        </form>
-        </div>
     </div>
 
 
