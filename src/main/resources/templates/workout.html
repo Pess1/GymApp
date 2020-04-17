@@ -19,6 +19,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     		</div>	
     	</nav>
     	
+    	<form th:object="${workoutform}" th:action="@{/saveworkoutedit/{id}(id=${workout.getId()})}" action="#" method="post">
+    		<label for="date">Date (Format: dd.mm.yyyy)
+    			<input type="text" id="date" th:field="*{date}" class="form-control" value="workoutform.date"/>
+    		</label>
+			<input type="submit" value="Change date" class="btn btn-link"></input>
+    	</form>
+    	
 		<table class="table table-striped">
 			  <tr>
 			   	<th>Lift Type</th>
@@ -34,7 +41,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
 			   	<td th:text="${lift.notes}"></td>
 			   	<td th:text="${lift.sets}"></td>
 			   	<td th:text="${lift.reps}"></td>
-			   	<td th:text="${lift.weight}"></td>
+			   	<td th:text="${lift.weight}+kg"></td>
 			   	<td><a th:href="@{../editlift/{id}(id=${lift.id})}" class="btn btn-primary">Edit</a></td>
 			   	<td sec:authorize="hasAuthority('ADMIN')">
 			   		<a th:href="@{../deletelift/{id}/{workoutId}(id=${lift.id},workoutId=${lift.getWorkout().getId()})}" class="btn btn-danger">Delete</a>

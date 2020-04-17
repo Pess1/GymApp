@@ -8,20 +8,20 @@
 <body>
 	<h1>Add Lift</h1>
 	<div class="col-md-4">
-		<form th:object="${lift}" th:action="@{/saveLift/{id}(id=${lift.workout.getId()})}" action="#" method="post">
-		  	<label for="liftType">Lift Type</label>
+		<form th:object="${liftform}" th:action="@{/saveLift/{id}(id=${liftform.workout.getId()})}" action="#" method="post">
+		  	<label for="liftType">Lift Type (For example Squat or Bench)</label>
 			<input type="text" id="liftType" th:field="*{liftType}" class="form-control"/>
 			<div></div>
-		  	<label for="notes">Variation and notes</label>
+		  	<label for="notes">Variation and notes (equipment used etc.)</label>
 			<input type="text" id="notes" th:field="*{notes}" class="form-control"/>
 			<div></div>
-		  	<label for="sets">Sets</label>
+		  	<label for="sets">Sets (number of sets performed)</label>
 			<input type="text" id="sets" th:field="*{sets}" class="form-control"/>
 			<div></div>
-			<label for="reps">Reps</label>
+			<label for="reps">Reps (number of repetitions performed per set)</label>
 			<input type="text" id="reps" th:field="*{reps}" class="form-control"/>
 			<div></div>
-			<label for="weight">Weight</label>
+			<label for="weight">Weight (weight lifted in kilograms)</label>
 			<input type="text" id="weight" th:field="*{weight}" class="form-control"/>
 			<div></div>
 			<input type="hidden" id="workout" th:field="*{workout}"/>

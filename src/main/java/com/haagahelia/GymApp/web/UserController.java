@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.haagahelia.GymApp.domain.EditRoleForm;
 import com.haagahelia.GymApp.domain.EditUserForm;
 import com.haagahelia.GymApp.domain.SignupForm;
 import com.haagahelia.GymApp.domain.User;
@@ -48,16 +49,13 @@ public class UserController {
 	@RequestMapping(value = "/edituserrole/{id}")
 	public String editUserRole(@PathVariable("id") Long id, Model model) {
 		User user = userRepo.findUserByUserid(id);
-		EditUserForm editUserForm = new EditUserForm();
+		EditRoleForm editRoleForm = new EditRoleForm();
 		
-		editUserForm.setEmail(user.getEmail());
-		editUserForm.setUsername(user.getUsername());
-		editUserForm.setHeight(user.getHeight());
-		editUserForm.setWeight(user.getWeight());
-		editUserForm.setRole(user.getRole());
-		editUserForm.setId(user.getUserId());
-		
-		model.addAttribute("edituserform", editUserForm);
+		editRoleForm.setRole(user.getRole());
+		editRoleForm.setId(user.getUserId());
+		editRoleForm.setUsername(user.getUsername());
+
+		model.addAttribute("editroleform", editRoleForm);
 		
 		return "edituserrole";
 	}
@@ -99,16 +97,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/saveuseredit/{username}", method = RequestMethod.POST)
-	public String saveEditedUser(@Valid @PathVariable("username") String username, 
-			@ModelAttribute("edituserform") EditUserForm editUserForm, BindingResult bindingResult) {
+	public String saveEditedUser(@Valid @ModelAttribute("edituserform") EditUserForm editUserForm, BindingResult bindingResult, 
+		@PathVariable("username") String username) {
 		
 		if (!bindingResult.hasErrors()) {
 			User user = userRepo.findUserByUsername(username);
 			
-			String password = editUserForm.getPassword();
 			BCryptPasswordEncoder bcEncoder = new BCryptPasswordEncoder();
 			
+			String password = editUserForm.getPassword();
 			boolean passwordValid = BCrypt.checkpw(password, user.getPasswordHash());
+			password = "";
 			
 			System.out.println(passwordValid);
 			
@@ -137,12 +136,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/saveroleedit/{id}", method = RequestMethod.POST)
-	public String saveRoleEdit(@PathVariable("id") Long id, @ModelAttribute("edituserform") EditUserForm editUserForm) {
-		User user = userRepo.findUserByUserid(id);
-		
-		user.setRole(editUserForm.getRole());
-		
-		userRepo.save(user);
+	public String saveRoleEdit(@Valid @ModelAttribute("editroleform") EditRoleForm editRoleForm, BindingResult bindingResult, @PathVariable("id") Long id) {
+		if(!bindingResult.hasErrors()) {
+			User user = userRepo.findUserByUserid(id);
+			
+			user.setRole(editRoleForm.getRole());
+			
+			userRepo.save(user);
+			
+		} else {
+			return "redirect:../edituserrole/" + id;
+		}
 		
 		return "redirect:../allusers";
 	}

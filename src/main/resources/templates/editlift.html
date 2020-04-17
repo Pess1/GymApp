@@ -8,23 +8,23 @@
 <body>
 	<h1>Edit Lift</h1>
 	<div class="col-md-4">
-		<form th:object="${lift}" th:action="@{/saveLift/{id}(id=${workout.getId()})}" action="#" method="post">
+		<form th:object="${liftform}" th:action="@{/save_edited_lift/{id}/{workoutId}(id=${liftform.getId()},workoutId=${liftform.getWorkout().getId()})}" action="#" method="post">
 			<input type="hidden" th:field="*{id}" />
-		  	<label for="liftType">Lift Type</label>
-			<input type="text" id="liftType" th:field="*{liftType}" class="form-control"/>
+		  	<label for="liftType">Lift Type (For example Squat or Bench)</label>
+			<input type="text" id="liftType" th:field="*{liftType}" class="form-control" value="liftform.liftType"/>
 			<div></div>
-		  	<label for="notes">Variation and notes</label>
-			<input type="text" id="notes" th:field="*{notes}" class="form-control"/>
+		  	<label for="notes">Variation and notes (equipment used etc.)</label>
+			<input type="text" id="notes" th:field="*{notes}" class="form-control" value="liftform.notes"/>
 			<div></div>
-		  	<label for="sets">Sets</label>
-			<input type="text" id="sets" th:field="*{sets}" class="form-control"/>
+		  	<label for="sets">Sets (number of sets performed)</label>
+			<input type="text" id="sets" th:field="*{sets}" class="form-control" value="liftform.sets"/>
 			<div></div>
-			<label for="reps">Reps</label>
-			<input type="text" id="reps" th:field="*{reps}" class="form-control"/>
+			<label for="reps">Reps (number of repetitions performed per set)</label>
+			<input type="text" id="reps" th:field="*{reps}" class="form-control" value="liftform.reps"/>
 			<div></div>
-			<label for="weight">Weight</label>
-			<input type="text" id="weight" th:field="*{weight}" class="form-control"/>
-			<input type="hidden" id="user" th:field="*{workout}" class="form-control" th:value="${lift.workout}"/>
+			<label for="weight">Weight (weight lifted in kilograms)</label>
+			<input type="text" id="weight" th:field="*{weight}" class="form-control" value="liftform.weight"/>
+			<input type="hidden" id="user" th:field="*{workout}" class="form-control" th:value="${liftform.workout}"/>
 			
 			<div style="clear: both; display: block; height: 10px;"></div>
 			

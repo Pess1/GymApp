@@ -11,9 +11,9 @@
 		<a th:href="@{/allusers}" class="btn btn-primary">All Users</a>
 	</div>
 	<div class="col-md-4">
-		<form th:object="${edituserform}" th:action="@{/saveroleedit/{id}(id=${edituserform.getId()})}" action="#" method="post">
+		<form th:object="${editroleform}" th:action="@{/saveroleedit/{id}(id=${editroleform.getId()})}" action="#" method="post">
 			<div>
-				<h3 th:text="'Profile: '+${edituserform.username}"></h3>
+				<h3 th:text="'Profile: '+${editroleform.username}"></h3>
 			</div>
 			<div>
 				<label for="role">Change Role: 

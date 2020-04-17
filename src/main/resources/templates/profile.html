@@ -49,7 +49,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
 						<td><a th:href="@{/deleteworkout/{id}(id=${workout.id})}" class="btn btn-danger">Delete workout</a></td>
 					</tr>
 				</table>
-				<a href="/addWorkout" class="btn btn-success">Add Workout</a>
+				
+				<form th:object="${workoutform}" th:action="@{/saveworkout}" action="#" method="post">
+    				<label for="date">Date (Format: dd.mm.yyyy)
+    					<input type="text" id="date" th:field="*{date}" class="form-control"/>
+    					<input type="hidden" id="user" th:field="*{user}" class="form-control" th:value="${user}"/>
+    				</label>
+					<input type="submit" value="Add workout" class="btn btn-link"></input>
+    			</form>
         	</div>
 
         </div>

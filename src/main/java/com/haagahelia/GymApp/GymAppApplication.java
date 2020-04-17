@@ -30,8 +30,8 @@ public class GymAppApplication {
 			User user2 = new User("testuser", "$2y$12$lNfQ16Dx1BxAfrVPfq5rzOjeY4hMGBZHfiOee4wVCP7.b.jkohw8K", "test@email.com", "USER", 90, 180);
 			userRepo.save(user2);
 			
-			Workout workout1 = new Workout("30.3.2020", userRepo.findUserByUsername("admin"));
-			Workout workout2 = new Workout("1.4.2020", userRepo.findUserByUsername("admin"));
+			Workout workout1 = new Workout("30.03.2020", userRepo.findUserByUsername("admin"));
+			Workout workout2 = new Workout("01.04.2020", userRepo.findUserByUsername("admin"));
 			
 			workoutRepo.save(workout1);
 			workoutRepo.save(workout2);

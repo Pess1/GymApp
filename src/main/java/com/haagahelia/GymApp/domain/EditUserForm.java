@@ -23,6 +23,7 @@ public class EditUserForm {
 		private String newPassword = "";
 		
 		@NotEmpty
+		//@Pattern(regexp = "^(USER|ADMIN)$")
 		private String role = "USER";
 		
 		@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
