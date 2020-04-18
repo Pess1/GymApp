@@ -3,7 +3,7 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>All Users</title>
+        <title>LiftVault-AllUsers</title>
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     </head>
     <body>
@@ -11,8 +11,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     	<nav class="navbar navbar-expand-lg navbar-light bg-light">
     		<h1 class="navbar-brand">All Users</h1>
     		<div class="navbar-nav">
-    			<a th:href="@{/alllifts}" 
-            		class="nav-item nav-link">Back to Front Page</a>
+    			<a th:href="@{/home}" 
+            		class="nav-item nav-link">Home</a>
         		<form th:action="@{/logout}" method="post">
             		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
         		</form>

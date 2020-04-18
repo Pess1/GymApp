@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Signup</title>
+    <title>LiftVault-Signup</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
@@ -25,6 +25,14 @@
 			</div>
 			<div>
 				<label for="height">Height (Centimeters): <input type="text" id="height" th:field="*{height}" class="form-control"/></label>
+			</div>
+			<div>
+				<label for="gender">Gender
+					<select th:field="*{gender}">
+						<option th:value="'Male'" th:text="Male"></option>
+						<option th:value="'Female'" th:text="Female"></option>
+					</select>
+				</label>
 			</div>
 			
 			<div style="clear: both; display: block; height: 10px;"></div>

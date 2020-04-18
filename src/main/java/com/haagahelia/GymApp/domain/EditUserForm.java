@@ -18,12 +18,10 @@ public class EditUserForm {
 		@Size(min = 4, max = 40)
 		private String password = "";
 		
-		@NotEmpty
-		@Size(min = 4, max = 40)
 		private String newPassword = "";
 		
 		@NotEmpty
-		//@Pattern(regexp = "^(USER|ADMIN)$")
+		@Pattern(regexp = "^(USER|ADMIN)$")
 		private String role = "USER";
 		
 		@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")

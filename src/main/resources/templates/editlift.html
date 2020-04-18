@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Lift</title>
+    <title>LiftVault-EditLift</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
@@ -10,10 +10,14 @@
 	<div class="col-md-4">
 		<form th:object="${liftform}" th:action="@{/save_edited_lift/{id}/{workoutId}(id=${liftform.getId()},workoutId=${liftform.getWorkout().getId()})}" action="#" method="post">
 			<input type="hidden" th:field="*{id}" />
-		  	<label for="liftType">Lift Type (For example Squat or Bench)</label>
-			<input type="text" id="liftType" th:field="*{liftType}" class="form-control" value="liftform.liftType"/>
-			<div></div>
-		  	<label for="notes">Variation and notes (equipment used etc.)</label>
+		  	<label for="liftType">Lift Type (Other is for not Powerlifting lifts. You can specify more in Variation and Notes)</label>
+		  	<select th:field="*{liftType}">
+				<option th:value="'Squat'" th:text="Squat"></option>
+				<option th:value="'Bench'" th:text="Bench"></option>
+				<option th:value="'Deadlift'" th:text="Deadlift"></option>
+				<option th:value="'Other'" th:text="Other"></option>
+			</select>
+		  	<label for="notes">Variation and notes (Variation / equipment used etc.)</label>
 			<input type="text" id="notes" th:field="*{notes}" class="form-control" value="liftform.notes"/>
 			<div></div>
 		  	<label for="sets">Sets (number of sets performed)</label>

@@ -40,6 +40,9 @@ public class User {
 	@Column(name = "height", nullable = false)
 	private int height;
 	
+	@Column(name = "gender", nullable = false)
+	private String gender;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 	@JsonIgnore
 	private List<Workout> workouts;
@@ -48,14 +51,14 @@ public class User {
 		
 	}
 	
-	public User(String username, String passwordHash, String email, String role, int weight, int height) {
+	public User(String username, String passwordHash, String email, String role, int weight, int height, String gender) {
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.email = email;
 		this.role = role;
 		this.weight = weight;
 		this.height = height;
-		
+		this.gender = gender;
 	}
 
 	public long getUserId() {
@@ -120,6 +123,14 @@ public class User {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	public String toString() {

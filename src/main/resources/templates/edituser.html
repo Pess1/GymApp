@@ -6,7 +6,7 @@
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Edit User</h1>
+	<h1>LiftVault-EditUser</h1>
 	<div class="col-md-4">
 		<form th:object="${edituserform}" th:action="@{/saveuseredit/{username}(username=${edituserform.username})}" action="#" method="post">
 			<div>

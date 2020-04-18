@@ -31,6 +31,9 @@ public class SignupForm {
 	@Max(400)
 	@Min(30)
 	private int weight;
+	
+	@Pattern(regexp="^(Male|Female)$")
+	private String gender = "Male";
 
 	public String getUsername() {
 		return username;
@@ -86,6 +89,14 @@ public class SignupForm {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 }

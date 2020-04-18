@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LiftVault-AddNews</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Edit News</h1>
+	<div class="col-md-4">
+		<form th:object="${newsform}" th:action="@{/save_edited_news/{id}(id=${newsform.id})}" action="#" method="post">
+		  	<label for="header">Header</label>
+			<input type="text" id="header" th:field="*{header}" class="form-control" value="*{header}"/>
+			<div></div>
+		  	<label for="chapter1">Chapter1 (max: 255 character including white space)</label>
+			<input type="text" id="chapter1" th:field="*{chapter1}" class="form-control" value="*{chapter1}"/>
+			<div></div>
+			<label for="chapter2">Chapter2 (max: 255 character including white space)</label>
+			<input type="text" id="chapter2" th:field="*{chapter2}" class="form-control" value="*{chapter2}"/>
+			<div></div>
+			<label for="chapter3">Chapter3 (max: 255 character including white space)</label>
+			<input type="text" id="chapter3" th:field="*{chapter3}" class="form-control" value="*{chapter3}"/>
+			<div></div>
+			<label for="chapter4">Chapter4 (max: 255 character including white space)</label>
+			<input type="text" id="chapter4" th:field="*{chapter4}" class="form-control" value="*{chapter4}"/>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input type="submit" value="Save" class="btn btn-success"></input>
+		</form>
+	</div>
+</body>
+</html>

@@ -7,6 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 public interface GymLiftRepository extends CrudRepository<GymLift, Long> {
 	List<GymLift> findLiftsByWorkout(Workout workout);
 	
+	List<GymLift> findLiftsByWorkoutUser(User user);
+	
 	List<GymLift> findLiftsByLiftType(String liftType);
 	
 	GymLift findLiftById(long id);

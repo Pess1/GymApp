@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Lift</title>
+    <title>LiftVault-AddLift</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
@@ -9,8 +9,13 @@
 	<h1>Add Lift</h1>
 	<div class="col-md-4">
 		<form th:object="${liftform}" th:action="@{/saveLift/{id}(id=${liftform.workout.getId()})}" action="#" method="post">
-		  	<label for="liftType">Lift Type (For example Squat or Bench)</label>
-			<input type="text" id="liftType" th:field="*{liftType}" class="form-control"/>
+		  	<label for="liftType">Lift Type (Other is for not Powerlifting lifts. You can specify more in Variation and Notes)</label>
+		  	<select th:field="*{liftType}">
+				<option th:value="'Squat'" th:text="Squat"></option>
+				<option th:value="'Bench'" th:text="Bench"></option>
+				<option th:value="'Deadlift'" th:text="Deadlift"></option>
+				<option th:value="'Other'" th:text="Other"></option>
+			</select>
 			<div></div>
 		  	<label for="notes">Variation and notes (equipment used etc.)</label>
 			<input type="text" id="notes" th:field="*{notes}" class="form-control"/>

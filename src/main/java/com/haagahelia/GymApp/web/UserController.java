@@ -81,6 +81,7 @@ public class UserController {
 			newUser.setEmail(signupForm.getEmail());
 			newUser.setHeight(signupForm.getHeight());
 			newUser.setWeight(signupForm.getWeight());
+			newUser.setGender(signupForm.getGender());
 			
 			if (userRepo.findUserByUsername(signupForm.getUsername()) == null) {
 				userRepo.save(newUser);
@@ -114,6 +115,11 @@ public class UserController {
 			if(passwordValid == true) {
 				String newPassword = editUserForm.getNewPassword();
 				String newHashedPass = bcEncoder.encode(newPassword);
+				
+				if(newPassword.length() < 4 && (newPassword.isEmpty()) == false) {
+					bindingResult.rejectValue("newPassword", "err.newPassword", "New Password too short. Must be at least 4 characters");
+					return "redirect:../edituser/" + user.getUsername();
+				}
 				
 				user.setEmail(editUserForm.getEmail());
 				user.setHeight(editUserForm.getHeight());
