@@ -22,6 +22,7 @@ public class GymAppApplication {
 		SpringApplication.run(GymAppApplication.class, args);
 	}
 	
+	/*
 	@Bean
 	public CommandLineRunner book(GymLiftRepository liftRepo, UserRepository userRepo, WorkoutRepository workoutRepo, NewsRepository newsRepo) {
 		return (args) -> {
@@ -60,8 +61,10 @@ public class GymAppApplication {
 							+ "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 					"",
 					""
-			));
+			)); 
 		};
+		
 	}
+	*/
 
 }
