@@ -1,44 +1,58 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>LiftVault-Signup</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-</head>
-<body>
-	<h1>Signup</h1>
-	<div class="col-md-4">
-		<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
-			<div>
-				<label for="username">Username: <input type="text" id="username" th:field="*{username}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
-			</div>
-			<div>
-				<label for="password">Password: <input type="password" id="password" th:field="*{password}" class="form-control"/></label>
-				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
-			</div>
-			<div>
-				<label for="email">Email: <input type="text" id="email" th:field="*{email}" class="form-control"/></label>
-			</div>
-			<div>
-				<label for="weight">Weight (Kilograms): <input type="text" id="weight" th:field="*{weight}" class="form-control"/></label>
-			</div>
-			<div>
-				<label for="height">Height (Centimeters): <input type="text" id="height" th:field="*{height}" class="form-control"/></label>
-			</div>
-			<div>
-				<label for="gender">Gender
-					<select th:field="*{gender}">
-						<option th:value="'Male'" th:text="Male"></option>
-						<option th:value="'Female'" th:text="Female"></option>
-					</select>
-				</label>
+	<head>
+	    <title>PowerliftingVault-Signup</title>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<h1 class="display-4">Welcome to PowerliftingVault</h1>
+				<p class="lead">Save all your training sessions to PowerliftingVault and keep track of your progress easily.</p>
+				<hr class="my-4">
+				<p>Fill in your user details to join others who are already using PowerliftingVault.</p>
 			</div>
 			
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<input type="submit" value="Signup" class="btn btn-primary"></input>
-		</form>
-	</div>
-</body>
+			<div class="col">
+				<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
+						<label for="username">Username: 
+							<input type="text" id="username" th:field="*{username}" class="form-control"/>
+						</label>
+						<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
+						
+						<label for="password">Password: 
+							<input type="password" id="password" th:field="*{password}" class="form-control"/>
+						</label>
+						<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
+						
+						<label for="email">Email: 
+							<input type="text" id="email" th:field="*{email}" class="form-control"/>
+						</label>
+						
+						</br>
+						
+						<label for="weight">Weight (Kilograms): 
+							<input type="text" id="weight" th:field="*{weight}" class="form-control"/>
+						</label>
+
+						<label for="height">Height (Centimeters): 
+							<input type="text" id="height" th:field="*{height}" class="form-control"/>
+						</label>
+
+						<label for="gender">Gender
+							<select class="form-control" th:field="*{gender}">
+								<option th:value="'Male'" th:text="Male"></option>
+								<option th:value="'Female'" th:text="Female"></option>
+							</select>
+						</label>
+					
+					<div style="clear: both; display: block; height: 10px;"></div>
+					
+					<input type="submit" value="Signup" class="btn btn-outline-success btn-sm"></input>
+					<a th:href="@{/login}" class="btn btn-outline-danger btn-sm">Cancel</a>
+				</form>
+			</div>	
+		</div>
+	</body>
 </html>

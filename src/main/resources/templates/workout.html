@@ -3,17 +3,17 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>LiftVault-Workout</title>
+        <title>PowerliftingVault-Workout</title>
         <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
     </head>
     <body>
     <div class="container">
     	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    		<h1 class="navbar-brand">Profile: [[${#httpServletRequest.remoteUser}]]</h1>
+    		<h1 class="navbar-brand">PowerliftingVault</h1>
     		<div class="navbar-nav">
     			<a th:href="@{/home}" class="nav-item nav-link">Home</a>
     			<a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
-            		class="nav-item nav-link">Back to profile</a>
+            		class="nav-item nav-link">Profile: [[${#httpServletRequest.remoteUser}]]</a>
             	<form th:action="@{/logout}" method="post">
             		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
         		</form>
@@ -24,12 +24,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     		<label for="date">Date (Format: dd.mm.yyyy)
     			<input type="text" id="date" th:field="*{date}" class="form-control" value="workoutform.date"/>
     		</label>
-			<input type="submit" value="Change date" class="btn btn-link"></input>
+			<input type="submit" value="Change date" class="btn btn-outline-info btn-sm"></input>
     	</form>
     	
 		<table class="table table-striped">
 			  <tr>
-			   	<th>Lift Type</th>
+			   	<th>Lift</th>
 			   	<th>Variation and notes</th>
 			   	<th>Sets</th>
 			   	<th>Reps</th>
@@ -43,14 +43,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
 			   	<td th:text="${lift.sets}"></td>
 			   	<td th:text="${lift.reps}"></td>
 			   	<td th:text="${lift.weight}+kg"></td>
-			   	<td><a th:href="@{../editlift/{id}(id=${lift.id})}" class="btn btn-primary">Edit</a></td>
-			   	<td sec:authorize="hasAuthority('ADMIN')">
-			   		<a th:href="@{../deletelift/{id}/{workoutId}(id=${lift.id},workoutId=${lift.getWorkout().getId()})}" class="btn btn-danger">Delete</a>
+			   	<td>
+			   		<a th:href="@{../editlift/{id}(id=${lift.id})}" class="btn btn-outline-info btn-sm">Edit</a>
+			   	</td>
+			   	<td>
+			   		<a th:href="@{../deletelift/{id}/{workoutId}(id=${lift.id},workoutId=${lift.getWorkout().getId()})}" class="btn btn-outline-danger btn-sm">Delete</a>
 			   	</td>
 			   </tr>
 		</table>
 		
-        <a th:href="@{../addlift/{id}(id=${workout.getId()})}" class="btn btn-success">Add Lift</a>
+        <a th:href="@{../addlift/{id}(id=${workout.getId()})}" class="btn btn-outline-success btn-sm">Add Lift</a>
 
         <div style="clear: both; display: block; height: 30px;"></div>
 

@@ -1,33 +1,40 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
 <head>
-    <title>LiftVault-EditUserRole</title>
+    <title>PowerliftingVault-EditUserRole</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<div class="col-md-4">
-		<h3>Edit User Role</h3>
-		<a th:href="@{/allusers}" class="btn btn-primary">All Users</a>
-	</div>
-	<div class="col-md-4">
-		<form th:object="${editroleform}" th:action="@{/saveroleedit/{id}(id=${editroleform.getId()})}" action="#" method="post">
-			<div>
-				<h3 th:text="'Profile: '+${editroleform.username}"></h3>
-			</div>
-			<div>
-				<label for="role">Change Role: 
-					<select th:field="*{role}">
-						<option th:value="'USER'" th:text="USER"></option>
-						<option th:value="'ADMIN'" th:text="ADMIN"></option>
-					</select>
-				</label>
-			</div>
+	<div class="container">
+		<div class="col">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	    		<h1 class="navbar-brand">PowerliftingVault</h1>
+	    		<div class="navbar-nav">
+	    			<a th:href="@{/home}" class="nav-item nav-link">Home</a>
+	        		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/allusers}" class="nav-item nav-link active">All Users</a>
+	        		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/addnews}" class="nav-item nav-link">Add News</a>
+	        		<form th:action="@{/logout}" method="post">
+	            		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
+	        		</form>
+	    		</div>	
+    		</nav>
+			<form th:object="${editroleform}" th:action="@{/saveroleedit/{id}(id=${editroleform.getId()})}" action="#" method="post">
+					<h3 th:text="'Edit Role of user: '+${editroleform.username}"></h3>
+					<label for="role">Change Role: 
+						<select class="form-control" th:field="*{role}">
+							<option th:value="'USER'" th:text="USER"></option>
+							<option th:value="'ADMIN'" th:text="ADMIN"></option>
+						</select>
+					</label>
+				<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<input type="submit" value="Save edit" class="btn btn-primary"></input>
-		</form>
+				<input type="submit" value="Save edit" class="btn btn-outline-success btn-sm"></input>
+				<a th:href="@{/allusers}" class="btn btn-outline-danger btn-sm">Cancel</a>
+			</form>
+		</div>
 	</div>
+	
 </body>
 </html>

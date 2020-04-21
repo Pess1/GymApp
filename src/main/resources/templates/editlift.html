@@ -1,39 +1,65 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>LiftVault-EditLift</title>
+    <title>PowerliftingVault-EditLift</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Edit Lift</h1>
-	<div class="col-md-4">
-		<form th:object="${liftform}" th:action="@{/save_edited_lift/{id}/{workoutId}(id=${liftform.getId()},workoutId=${liftform.getWorkout().getId()})}" action="#" method="post">
-			<input type="hidden" th:field="*{id}" />
-		  	<label for="liftType">Lift Type (Other is for not Powerlifting lifts. You can specify more in Variation and Notes)</label>
-		  	<select th:field="*{liftType}">
-				<option th:value="'Squat'" th:text="Squat"></option>
-				<option th:value="'Bench'" th:text="Bench"></option>
-				<option th:value="'Deadlift'" th:text="Deadlift"></option>
-				<option th:value="'Other'" th:text="Other"></option>
-			</select>
-		  	<label for="notes">Variation and notes (Variation / equipment used etc.)</label>
-			<input type="text" id="notes" th:field="*{notes}" class="form-control" value="liftform.notes"/>
-			<div></div>
-		  	<label for="sets">Sets (number of sets performed)</label>
-			<input type="text" id="sets" th:field="*{sets}" class="form-control" value="liftform.sets"/>
-			<div></div>
-			<label for="reps">Reps (number of repetitions performed per set)</label>
-			<input type="text" id="reps" th:field="*{reps}" class="form-control" value="liftform.reps"/>
-			<div></div>
-			<label for="weight">Weight (weight lifted in kilograms)</label>
-			<input type="text" id="weight" th:field="*{weight}" class="form-control" value="liftform.weight"/>
-			<input type="hidden" id="user" th:field="*{workout}" class="form-control" th:value="${liftform.workout}"/>
-			
-			<div style="clear: both; display: block; height: 10px;"></div>
-			
-			<input type="submit" value="Save" class="btn btn-success"></input>
-		</form>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	    	<h1 class="navbar-brand">PowerliftingVault</h1>
+	    	<div class="navbar-nav">
+	    		<a th:href="@{/home}" class="nav-item nav-link">Home</a>
+	    		<a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
+	            	class="nav-item nav-link">Profile: [[${#httpServletRequest.remoteUser}]]</a>
+	            <form th:action="@{/logout}" method="post">
+	            	<input type="submit" value="Sign Out" class="nav-item nav-link"/>
+	        	</form>
+	    	</div>	
+    	</nav>
+		<h3>Edit Lift</h3>
+		<div style="clear: both; display: block; height: 20px;"></div>
+		<div class="col">
+			<form th:object="${liftform}" th:action="@{/save_edited_lift/{id}/{workoutId}(id=${liftform.getId()},workoutId=${liftform.getWorkout().getId()})}" action="#" method="post">
+				<input type="hidden" th:field="*{id}" />
+			  	<label for="liftType">Lift Type (Other is for not Powerlifting lifts. You can specify more in Variation and Notes)</label>
+				  </br>
+				<select th:field="*{liftType}" class="form-control" style="max-width: 18rem;">
+					<option th:value="'Squat'" th:text="Squat"></option>
+					<option th:value="'Bench'" th:text="Bench"></option>
+					<option th:value="'Deadlift'" th:text="Deadlift"></option>
+					<option th:value="'Other'" th:text="Other"></option>
+				</select>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+			  	<label for="notes">Variation, notes and equipment used</label>
+				<input type="text" id="notes" th:field="*{notes}" class="form-control" value="liftform.notes"/>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+			  	<label for="sets">Sets (number of sets performed)</label>
+				<input type="text" id="sets" th:field="*{sets}" class="form-control" value="liftform.sets" style="max-width: 18rem;"/>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<label for="reps">Reps (number of repetitions performed per set)</label>
+				<input type="text" id="reps" th:field="*{reps}" class="form-control" value="liftform.reps" style="max-width: 18rem;"/>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<label for="weight">Weight (weight lifted in kilograms)</label>
+				<input type="text" id="weight" th:field="*{weight}" class="form-control" value="liftform.weight" style="max-width: 18rem;"/>
+
+				<input type="hidden" id="user" th:field="*{workout}" class="form-control" th:value="${liftform.workout}"/>
+				
+				<div style="clear: both; display: block; height: 10px;"></div>
+				
+				<input type="submit" value="Save" class="btn btn-outline-success btn-sm"></input>
+				<a th:href="@{/workout/{id}(id=${liftform.workout.getId()})}" class="btn btn-outline-danger btn-sm">Cancel</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

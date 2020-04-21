@@ -8,20 +8,36 @@
     </head>
     
     <body>
-     	<div class="col-md-4">
-     	<h1>Welcome to LiftVault</h1>
-        	<div class="alert alert-danger" th:if="${param.error}">
-            	Invalid username and password.
-        	</div>
-        	<div class="alert alert-warning" th:if="${param.logout}">
-            	You have been logged out.
-        	</div>
-        	<form th:action="@{/login}" method="post">
-            	<div><label> Username : <input type="text" name="username" class="form-control"/> </label></div>
-            	<div><label> Password: <input type="password" name="password" class="form-control"/> </label></div>
-            	<div><input type="submit" value="Sign In" class="btn btn-primary"/></div>
-        	</form>
-        	<a th:href="@{/signup}">Sign-up</a>
-       	</div>
+    	<div class="container">
+	    	<div class="jumbotron">
+				<h1 class="display-4">Welcome to PowerliftingVault</h1>
+				<p class="lead">Save all your training sessions to PowerliftingVault and keep track of your progress easily.</p>
+				<hr class="my-4">
+				<p>
+					Sign in if you already have an account or 
+					<a th:href="@{/signup}" class="btn btn-outline-primary">Sign-up</a> 
+					if you are new.
+				</p>
+				<div class="alert alert-danger" th:if="${param.error}">
+	            	Invalid username and password.
+	        	</div>
+	        	<div class="alert alert-warning" th:if="${param.logout}">
+	            	You have been logged out.
+	        	</div>
+	        	<form th:action="@{/login}" method="post">
+	            	<label> Username : 
+	            		<input type="text" name="username" class="form-control"/>
+	            	</label>
+	            	<label> Password: 
+	            		<input type="password" name="password" class="form-control"/>
+	            	</label>
+	            	<input type="submit" value="Sign In" class="btn btn-outline-success btn-sm"/>
+	            	
+	        	</form>
+			</div>
+	     	<div class="col">
+	        	
+	       	</div> 	
+    	</div>
     </body>
 </html>

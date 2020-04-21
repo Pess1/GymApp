@@ -1,16 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit User</title>
+    <title>PowerliftingVault-EditUser</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>LiftVault-EditUser</h1>
-	<div class="col-md-4">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    		<h1 class="navbar-brand">PowerliftingVault</h1>
+    		<div class="navbar-nav">
+    			<a th:href="@{/home}" class="nav-item nav-link">Home</a>
+    			<a th:href="@{/profile/{username}(username=${#httpServletRequest.remoteUser})}" 
+            		class="nav-item nav-link">Profile: [[${#httpServletRequest.remoteUser}]]</a>
+    			<a th:href="@{/edituser/{username}(username=${#httpServletRequest.remoteUser})}" class="nav-item nav-link active">Edit user</a>
+            	<form th:action="@{/logout}" method="post">
+            		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
+        		</form>
+    		</div>	
+    	</nav>
+	<div class="col">
 		<form th:object="${edituserform}" th:action="@{/saveuseredit/{username}(username=${edituserform.username})}" action="#" method="post">
 			<div>
-				<h3 th:text="${edituserform.username}"></h3>
+				<h3>Edit [[${#httpServletRequest.remoteUser}]]</h3>
 			</div>
 			
 			<div>
@@ -43,9 +55,10 @@
 			
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<input type="submit" value="Save edit" class="btn btn-primary"></input>
-			<a th:href="@{/profile/{username}(username=${edituserform.username})}" class="btn btn-danger">Cancel</a>
+			<input type="submit" value="Save edit" class="btn btn-outline-success btn-sm"></input>
+			<a th:href="@{/profile/{username}(username=${edituserform.username})}" class="btn btn-outline-danger btn-sm">Cancel</a>
 		</form>
+	</div>
 	</div>
 </body>
 </html>

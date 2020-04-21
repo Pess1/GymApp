@@ -3,16 +3,17 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>LiftVault-AllUsers</title>
+        <title>PowerliftingVault-AllUsers</title>
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
     </head>
     <body>
     <div class="container">
     	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    		<h1 class="navbar-brand">All Users</h1>
+    		<h1 class="navbar-brand">PowerliftingVault</h1>
     		<div class="navbar-nav">
-    			<a th:href="@{/home}" 
-            		class="nav-item nav-link">Home</a>
+    			<a th:href="@{/home}" class="nav-item nav-link">Home</a>
+        		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/allusers}" class="nav-item nav-link active">All Users</a>
+        		<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/addnews}" class="nav-item nav-link">Add News</a>
         		<form th:action="@{/logout}" method="post">
             		<input type="submit" value="Sign Out" class="nav-item nav-link"/>
         		</form>
@@ -32,10 +33,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.role}"></td>
                 <td sec:authorize="hasAuthority('ADMIN')">
-                	<a th:href="@{/edituserrole/{id}(id=${user.getUserId()})}" class="btn btn-primary">Edit user role</a>
+                	<a th:href="@{/edituserrole/{id}(id=${user.getUserId()})}" class="btn btn-outline-info btn-sm">Edit user role</a>
                 </td>
                 <td sec:authorize="hasAuthority('ADMIN')">
-                	<a th:href="@{/deleteuser/{id}(id=${user.getUserId()})}" class="btn btn-danger">Delete user</a>
+                	<a th:href="@{/deleteuser/{id}(id=${user.getUserId()})}" class="btn btn-outline-danger btn-sm">Delete user</a>
                 </td>
             </tr>
         </table>
