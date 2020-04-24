@@ -3,6 +3,7 @@ package com.haagahelia.GymApp.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -31,19 +32,24 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/edituser/{username}")
-	public String editUser(@PathVariable("username") String username, Model model) {
-		User user = userRepo.findUserByUsername(username);
-		EditUserForm editUserForm = new EditUserForm();
+	public String editUser(@PathVariable("username") String username, Model model, Authentication auth) {
+		if (auth.getName().equals(username)) {
+			User user = userRepo.findUserByUsername(username);
+			EditUserForm editUserForm = new EditUserForm();
+			
+			editUserForm.setEmail(user.getEmail());
+			editUserForm.setUsername(user.getUsername());
+			editUserForm.setHeight(user.getHeight());
+			editUserForm.setWeight(user.getWeight());
+			editUserForm.setRole(user.getRole());
+			
+			model.addAttribute("edituserform", editUserForm);
+			
+			return "edituser";
+		} else {
+			return "redirect:../invalidprofile";
+		}
 		
-		editUserForm.setEmail(user.getEmail());
-		editUserForm.setUsername(user.getUsername());
-		editUserForm.setHeight(user.getHeight());
-		editUserForm.setWeight(user.getWeight());
-		editUserForm.setRole(user.getRole());
-		
-		model.addAttribute("edituserform", editUserForm);
-		
-		return "edituser";
 	}
 	
 	@RequestMapping(value = "/edituserrole/{id}")
