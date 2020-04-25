@@ -22,7 +22,7 @@ public class GymAppApplication {
 		SpringApplication.run(GymAppApplication.class, args);
 	}
 	
-	/*
+	
 	@Bean
 	public CommandLineRunner book(GymLiftRepository liftRepo, UserRepository userRepo, WorkoutRepository workoutRepo, NewsRepository newsRepo) {
 		return (args) -> {
@@ -30,6 +30,7 @@ public class GymAppApplication {
 			User user1 = new User("admin", "$2y$12$Vh1mFFnzjglTzkuVWjfXhOC1FW5HUes2mrJbPMLcuZHxIJqplFgrG", "admin@email.com", "ADMIN", 112, 185, "Male");
 			userRepo.save(user1);
 			
+			/*
 			User user2 = new User("testuser", "$2y$12$lNfQ16Dx1BxAfrVPfq5rzOjeY4hMGBZHfiOee4wVCP7.b.jkohw8K", "test@email.com", "USER", 90, 180, "Male");
 			userRepo.save(user2);
 			
@@ -61,10 +62,10 @@ public class GymAppApplication {
 							+ "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 					"",
 					""
-			)); 
+			)); */
 		};
 		
 	}
-	*/
+	
 
 }
