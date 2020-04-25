@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+//Form for new users when they sign up and create an user
 public class SignupForm {
 	
 	private long id;
@@ -21,6 +22,7 @@ public class SignupForm {
 	@NotEmpty
 	private String role = "USER";
 	
+	//Checking that email is valid format
 	@Pattern(regexp = "^[A-Za-z0-9+_.-]+@(.+)$")
 	private String email = "";
 	

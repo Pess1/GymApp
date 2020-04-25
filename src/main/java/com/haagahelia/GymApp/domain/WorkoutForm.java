@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+//Form for saving new workout or modifying existing ones
 public class WorkoutForm {
 	
 	private long id;

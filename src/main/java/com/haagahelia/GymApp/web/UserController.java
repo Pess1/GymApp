@@ -25,12 +25,14 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepo;
 	
+	//Controller for the signup page
 	@RequestMapping(value = "/signup")
 	public String signup(Model model) {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
 	}
 	
+	//Controller for the user editing page
 	@RequestMapping(value = "/edituser/{username}")
 	public String editUser(@PathVariable("username") String username, Model model, Authentication auth) {
 		if (auth.getName().equals(username)) {
@@ -52,6 +54,7 @@ public class UserController {
 		
 	}
 	
+	//Controller for the page where admins can edit user roles
 	@RequestMapping(value = "/edituserrole/{id}")
 	public String editUserRole(@PathVariable("id") Long id, Model model) {
 		User user = userRepo.findUserByUserid(id);
@@ -73,6 +76,7 @@ public class UserController {
 	*@return
 	*/
 	
+	//Controller fo saving new users
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
 	public String saveUser(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
 		if (!bindingResult.hasErrors()) {
@@ -103,6 +107,7 @@ public class UserController {
 		return "redirect:/login";
 	}
 	
+	//Controller for saving the edited user data
 	@RequestMapping(value = "/saveuseredit/{username}", method = RequestMethod.POST)
 	public String saveEditedUser(@Valid @ModelAttribute("edituserform") EditUserForm editUserForm, BindingResult bindingResult, 
 		@PathVariable("username") String username) {
@@ -132,7 +137,7 @@ public class UserController {
 				user.setWeight(editUserForm.getWeight());
 				user.setRole(editUserForm.getRole());
 				
-				if (newPassword.isEmpty() || newPassword.isBlank()) {
+				if (newPassword.trim().isEmpty()) {
 					userRepo.save(user);
 				} else {
 					user.setPasswordHash(newHashedPass);
@@ -147,6 +152,7 @@ public class UserController {
 		return ("redirect:../profile/" + username);
 	}
 	
+	//Controller for saving the edited role of an user
 	@RequestMapping(value = "/saveroleedit/{id}", method = RequestMethod.POST)
 	public String saveRoleEdit(@Valid @ModelAttribute("editroleform") EditRoleForm editRoleForm, BindingResult bindingResult, @PathVariable("id") Long id) {
 		if(!bindingResult.hasErrors()) {
@@ -163,6 +169,7 @@ public class UserController {
 		return "redirect:../allusers";
 	}
 	
+	//Controller for deleting a user
 	@RequestMapping(value = "/deleteuser/{id}", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable("id") Long id) {
 		userRepo.deleteById(id);

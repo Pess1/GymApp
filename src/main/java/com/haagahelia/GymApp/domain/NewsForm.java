@@ -2,6 +2,7 @@ package com.haagahelia.GymApp.domain;
 
 import javax.validation.constraints.Size;
 
+//Form for saving or editing news
 public class NewsForm {
 	
 	private long id;

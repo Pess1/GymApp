@@ -14,10 +14,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//Entity user, in PostGre table name is client since Postgre doesnt allow table name to be user
 @Entity
 @Table(name = "client")
 public class User {
-	//@Column(name = "userid", nullable = false, updatable = false)
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

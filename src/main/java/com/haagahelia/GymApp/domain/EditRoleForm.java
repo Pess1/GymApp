@@ -3,6 +3,7 @@ package com.haagahelia.GymApp.domain;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
+//Form for editing user role
 public class EditRoleForm {
 
 		private long id;

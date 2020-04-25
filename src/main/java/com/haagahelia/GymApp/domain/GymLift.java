@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+//Gym lift entity. Each lift belongs to one workout
 @Entity
 public class GymLift {
 	

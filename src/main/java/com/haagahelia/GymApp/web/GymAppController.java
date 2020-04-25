@@ -51,7 +51,6 @@ public class GymAppController {
 	//Front page controller
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePage(Model model, Authentication auth) {
-		System.out.println(auth.getName());
 		model.addAttribute("news", newsRepo.findAll());
 		return "home";
 	}
@@ -61,6 +60,7 @@ public class GymAppController {
 	public String profileData(@PathVariable("username") String username, Model model, Authentication authentication) {
 		User user = userRepo.findUserByUsername(username);
 		
+		//Authenticating that the user logged in is entering their own profile page
 		if (authentication.getName().equals(user.getUsername())) {
 			WorkoutForm workoutForm = new WorkoutForm();
 			
@@ -73,7 +73,7 @@ public class GymAppController {
 			bench.setWeight(0);
 			deadlift.setWeight(0);
 			
-			
+			//Getting users heaviest squat, bench and DL
 			for (GymLift lift : lifts) {
 				if(lift.getLiftType().equals("Squat")) {
 					if(lift.getWeight() >= squat.getWeight()) {
@@ -100,6 +100,7 @@ public class GymAppController {
 				}
 			}
 			
+			//Calculating users Wilks score
 			int uW = user.getWeight();
 			int total = squat.getWeight() + bench.getWeight() + deadlift.getWeight();
 			Double wilks = 0.00;

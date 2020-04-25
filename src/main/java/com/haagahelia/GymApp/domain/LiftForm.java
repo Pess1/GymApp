@@ -4,6 +4,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+//Form for saving or editing a lift
 public class LiftForm {
 	private long id;
 	
