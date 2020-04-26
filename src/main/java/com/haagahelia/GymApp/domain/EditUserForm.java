@@ -34,7 +34,7 @@ public class EditUserForm {
 		
 		@Max(400)
 		@Min(30)
-		private int weight;
+		private double weight;
 
 		public String getUsername() {
 			return username;
@@ -76,11 +76,11 @@ public class EditUserForm {
 			this.height = height;
 		}
 
-		public int getWeight() {
+		public double getWeight() {
 			return weight;
 		}
 
-		public void setWeight(int weight) {
+		public void setWeight(double weight) {
 			this.weight = weight;
 		}
 

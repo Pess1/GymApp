@@ -32,7 +32,7 @@ public class SignupForm {
 	
 	@Max(400)
 	@Min(30)
-	private int weight;
+	private double weight;
 	
 	@Pattern(regexp="^(Male|Female)$")
 	private String gender = "Male";
@@ -77,11 +77,11 @@ public class SignupForm {
 		this.height = height;
 	}
 
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

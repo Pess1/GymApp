@@ -101,9 +101,9 @@ public class GymAppController {
 			}
 			
 			//Calculating users Wilks score
-			int uW = user.getWeight();
-			int total = squat.getWeight() + bench.getWeight() + deadlift.getWeight();
-			Double wilks = 0.00;
+			double uW = user.getWeight();
+			double total = squat.getWeight() + bench.getWeight() + deadlift.getWeight();
+			double wilks = 0.00;
 			
 			if(user.getGender().equals("Male")) {
 				wilks = (total) * 500 / (-216.0475144 + (16.2606339 * uW) + (-0.002388645 * Math.pow(uW, 2)) + (-0.00113732 * Math.pow(uW, 3)) + 

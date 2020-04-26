@@ -36,7 +36,7 @@ public class User {
 	private String role;
 	
 	@Column(name = "weight", nullable = false)
-	private int weight;
+	private double weight;
 	
 	@Column(name = "height", nullable = false)
 	private int height;
@@ -52,7 +52,7 @@ public class User {
 		
 	}
 	
-	public User(String username, String passwordHash, String email, String role, int weight, int height, String gender) {
+	public User(String username, String passwordHash, String email, String role, double weight, int height, String gender) {
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.email = email;
@@ -110,11 +110,11 @@ public class User {
 		this.workouts = workouts;
 	}
 	
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

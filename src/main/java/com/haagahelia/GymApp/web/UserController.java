@@ -76,7 +76,7 @@ public class UserController {
 	*@return
 	*/
 	
-	//Controller fo saving new users
+	//Controller for saving new users
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
 	public String saveUser(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult) {
 		if (!bindingResult.hasErrors()) {

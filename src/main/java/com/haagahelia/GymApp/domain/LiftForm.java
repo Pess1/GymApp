@@ -12,7 +12,7 @@ public class LiftForm {
 	@Size(min = 1, max = 30)
 	private String liftType;
 	
-	@Size(min = 1, max = 50)
+	@Size(min = 0, max = 50)
 	private String notes;
 	
 	@Min(value = 1)
@@ -22,7 +22,7 @@ public class LiftForm {
 	private int reps;
 	
 	@Min(value = 0)
-	private int weight;
+	private double weight;
 	
 	private Workout workout;
 	
@@ -66,11 +66,11 @@ public class LiftForm {
 		this.reps = reps;
 	}
 
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

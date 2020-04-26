@@ -19,7 +19,7 @@ public class GymLift {
 	private String notes;
 	private int sets;
 	private int reps;
-	private int weight;
+	private double weight;
 	
 	@ManyToOne
 	@JoinColumn(name = "workoutid")
@@ -78,11 +78,11 @@ public class GymLift {
 		this.reps = reps;
 	}
 
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

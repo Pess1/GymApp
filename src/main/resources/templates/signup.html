@@ -16,27 +16,27 @@
 			
 			<div class="col">
 				<form th:object="${signupform}" th:action="@{/saveuser}" action="#" method="post">
-						<label for="username">Username: 
+						<label for="username">Username (min. 4 characters): 
 							<input type="text" id="username" th:field="*{username}" class="form-control"/>
 						</label>
 						<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</p>
 						
-						<label for="password">Password: 
+						<label for="password">Password (min. 4 characters): 
 							<input type="password" id="password" th:field="*{password}" class="form-control"/>
 						</label>
 						<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
 						
-						<label for="email">Email: 
+						<label for="email">Email (Valid email format): 
 							<input type="text" id="email" th:field="*{email}" class="form-control"/>
 						</label>
 						
 						</br>
 						
-						<label for="weight">Weight (Kilograms): 
+						<label for="weight">Weight (Kilograms, format example 92.7): 
 							<input type="text" id="weight" th:field="*{weight}" class="form-control"/>
 						</label>
 
-						<label for="height">Height (Centimeters): 
+						<label for="height">Height (Centimeters, no decimals): 
 							<input type="text" id="height" th:field="*{height}" class="form-control"/>
 						</label>
 
