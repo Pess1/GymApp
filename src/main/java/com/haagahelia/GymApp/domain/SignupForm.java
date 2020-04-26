@@ -32,7 +32,7 @@ public class SignupForm {
 	
 	@Max(400)
 	@Min(30)
-	private double weight;
+	private double weight = 0.00;
 	
 	@Pattern(regexp="^(Male|Female)$")
 	private String gender = "Male";

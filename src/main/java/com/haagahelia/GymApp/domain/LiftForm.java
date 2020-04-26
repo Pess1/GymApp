@@ -22,7 +22,7 @@ public class LiftForm {
 	private int reps;
 	
 	@Min(value = 0)
-	private double weight;
+	private double weight = 0.00;
 	
 	private Workout workout;
 	

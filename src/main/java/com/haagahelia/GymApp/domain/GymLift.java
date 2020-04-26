@@ -19,7 +19,7 @@ public class GymLift {
 	private String notes;
 	private int sets;
 	private int reps;
-	private double weight;
+	private double weight = 0.00;
 	
 	@ManyToOne
 	@JoinColumn(name = "workoutid")

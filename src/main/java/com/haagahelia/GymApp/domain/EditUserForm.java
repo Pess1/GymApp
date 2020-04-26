@@ -34,7 +34,7 @@ public class EditUserForm {
 		
 		@Max(400)
 		@Min(30)
-		private double weight;
+		private double weight = 0.00;
 
 		public String getUsername() {
 			return username;

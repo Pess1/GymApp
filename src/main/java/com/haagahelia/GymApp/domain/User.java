@@ -36,7 +36,7 @@ public class User {
 	private String role;
 	
 	@Column(name = "weight", nullable = false)
-	private double weight;
+	private double weight = 0.00;
 	
 	@Column(name = "height", nullable = false)
 	private int height;
