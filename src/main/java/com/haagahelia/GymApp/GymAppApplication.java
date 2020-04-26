@@ -26,9 +26,12 @@ public class GymAppApplication {
 	@Bean
 	public CommandLineRunner book(GymLiftRepository liftRepo, UserRepository userRepo, WorkoutRepository workoutRepo, NewsRepository newsRepo) {
 		return (args) -> {
-	
-			//User user1 = new User("admin", "$2y$12$Vh1mFFnzjglTzkuVWjfXhOC1FW5HUes2mrJbPMLcuZHxIJqplFgrG", "admin@email.com", "ADMIN", 112, 185, "Male");
-			//userRepo.save(user1);
+			
+			if(userRepo.findUserByUsername("admin") == null) {
+				User user1 = new User("admin", "$2y$12$Vh1mFFnzjglTzkuVWjfXhOC1FW5HUes2mrJbPMLcuZHxIJqplFgrG", "admin@email.com", "ADMIN", 112, 185, "Male");
+				userRepo.save(user1);
+			}
+			
 			
 			/*
 			User user2 = new User("testuser", "$2y$12$lNfQ16Dx1BxAfrVPfq5rzOjeY4hMGBZHfiOee4wVCP7.b.jkohw8K", "test@email.com", "USER", 90, 180, "Male");

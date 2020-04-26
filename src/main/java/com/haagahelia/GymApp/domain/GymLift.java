@@ -29,7 +29,7 @@ public class GymLift {
 		
 	}
 	
-	public GymLift(String liftType, String notes, int sets, int reps, int weight, Workout workout) {
+	public GymLift(String liftType, String notes, int sets, int reps, double weight, Workout workout) {
 		this.liftType = liftType;
 		this.notes = notes;
 		this.sets = sets;
