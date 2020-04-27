@@ -26,22 +26,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5%22%3E">
 					<a th:href="@{/home}" class="btn btn-outline-danger btn-sm">Cancel</a>
 					<div style="clear: both; display: block; height: 10px;"></div>
 				  	<label for="header">Header</label>
-					<input type="text" id="header" th:field="*{header}" class="form-control"/>
+					<input th:maxlength="255" type="text" id="header" th:field="*{header}" class="form-control"/>
 				</form>
 				
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
 				<label for="chapter1">Chapter1 (max: 255 character including white space)
-					<textarea rows="5" cols="100" name="chapter1" form="newsform" id="chapter1" th:field="*{newsform.chapter1}"></textarea>
+					<textarea th:maxlength="255" rows="5" cols="100" name="chapter1" form="newsform" id="chapter1" th:field="*{newsform.chapter1}"></textarea>
 				</label>
 				<label for="chapter2">Chapter2 (max: 255 character including white space)
-					<textarea rows="5" cols="100" name="chapter2" form="newsform" id="chapter2" th:field="*{newsform.chapter2}"></textarea>
+					<textarea th:maxlength="255" rows="5" cols="100" name="chapter2" form="newsform" id="chapter2" th:field="*{newsform.chapter2}"></textarea>
 				</label>
 				<label for="chapter3">Chapter3 (max: 255 character including white space)
-					<textarea rows="5" cols="100" name="chapter3" form="newsform" id="chapter3" th:field="*{newsform.chapter3}"></textarea>
+					<textarea th:maxlength="255" rows="5" cols="100" name="chapter3" form="newsform" id="chapter3" th:field="*{newsform.chapter3}"></textarea>
 				</label>
 				<label for="chapter4">Chapter4 (max: 255 character including white space)
-					<textarea rows="5" cols="100" name="chapter4" form="newsform" id="chapter4" th:field="*{newsform.chapter4}"></textarea>
+					<textarea th:maxlength="255" rows="5" cols="100" name="chapter4" form="newsform" id="chapter4" th:field="*{newsform.chapter4}"></textarea>
 				</label>
 				
 			</div>

@@ -35,7 +35,7 @@
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
 			  	<label for="notes">Variation, notes and equipment used</label>
-				<input type="text" id="notes" th:field="*{notes}" class="form-control" value="liftform.notes"/>
+				<input th:maxlength="50" type="text" id="notes" th:field="*{notes}" class="form-control" value="liftform.notes"/>
 				
 				<div style="clear: both; display: block; height: 10px;"></div>
 				
