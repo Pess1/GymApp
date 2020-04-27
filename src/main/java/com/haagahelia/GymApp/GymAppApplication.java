@@ -28,7 +28,7 @@ public class GymAppApplication {
 		return (args) -> {
 			
 			if(userRepo.findUserByUsername("admin") == null) {
-				User user1 = new User("admin", "$2y$12$Vh1mFFnzjglTzkuVWjfXhOC1FW5HUes2mrJbPMLcuZHxIJqplFgrG", "admin@email.com", "ADMIN", 112, 185, "Male");
+				User user1 = new User("admin", "$2y$12$Vh1mFFnzjglTzkuVWjfXhOC1FW5HUes2mrJbPMLcuZHxIJqplFgrG", "admin@email.com", "ADMIN", 112.00, 185, "Male");
 				userRepo.save(user1);
 			}
 			
